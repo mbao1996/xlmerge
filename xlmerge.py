@@ -9,11 +9,11 @@ opr = []
 
 row_start = 3
 col_opr = 7
+col_chg =[8,9,10]
 
 def add_str_to_list(list, str):
     str_exist = False
     for i in range(len(list)):
-        print('===', i)
         if( list[i] == str ):
             str_exist = True
             break
@@ -27,11 +27,12 @@ except Exception as e:
     os._exit(0)
 ws = wb[sheet]
 
-print(ws.max_row)
+# get opr
 for i in range(row_start, ws.max_row+1):
     op = ws.cell(i, col_opr).value
     op = ''.join(op.split())
-    print(i, '---', ws.cell(i, 1).value, '[', ws.cell(i, col_opr).value, ']')
     add_str_to_list(opr, op)
-    
 print(opr)
+fn_div = fn.split('.')
+fn_rd = fn_div[0] + '_' + opr[0] + '.' + fn_div[1]
+print(fn_rd)
